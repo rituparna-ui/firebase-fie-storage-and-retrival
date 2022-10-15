@@ -12,13 +12,14 @@ const serviceAccount = {
   type: '',
   project_id: '-a',
   private_key_id: '',
-  private_key: '',
-  client_email: 'firebase-adminsdk-b2d88@rituparna-a.iam.gserviceaccount.com',
+  private_key:
+    '-----BEGIN PRIVATE KEY-----\\//++\\/++\n+/+/++\\+jXu/\nx/\\nHt//+/++\ns/++O/\nfbh+7fXSulQgY+==\n-----END PRIVATE KEY-----\n',
+  client_email: '--@-a.iam..com',
   client_id: '',
-  auth_uri: 'https://accounts.google.com/o/oauth2/auth',
-  token_uri: 'https://oauth2.googleapis.com/token',
+  auth_uri: 'https://.google.com/o/oauth2/auth',
+  token_uri: 'https://oauth2..com/token',
   auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
-  client_x509_cert_url: 'https://www.goo',
+  client_x509_cert_url: '',
 };
 
 const multer = Multer({
@@ -31,6 +32,13 @@ const multer = Multer({
     },
     public: true,
     unique: true,
+    hooks: {
+      beforeUpload(req, file) {
+        console.log(`before upload:`, file);
+        file.originalname = file.originalname.replace(/ /g, '_');
+        file.originalname = Date.now() + '_' + file.originalname;
+      },
+    },
   }),
 });
 
